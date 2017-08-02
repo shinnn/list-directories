@@ -1,0 +1,48 @@
+{
+  "name": "list-directories",
+  "version": "0.1.0",
+  "description": "List all directories in a given directory",
+  "repository": "shinnn/list-directories",
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+  "scripts": {
+    "pretest": "eslint --format=codeframe index.js test.js",
+    "test": "nyc --reporter=html --reporter=text node --throw-deprecation test.js"
+  },
+  "license": "CC0-1.0",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "fs",
+    "empty",
+    "blank",
+    "file",
+    "list",
+    "enumerate",
+    "dir",
+    "readdir",
+    "set",
+    "iterable",
+    "promise",
+    "async"
+  ],
+  "dependencies": {
+    "es6-set": "^0.1.5",
+    "lodash": "^4.17.4",
+    "lstat-dir": "^0.1.0"
+  },
+  "devDependencies": {
+    "@shinnn/eslint-config-node": "^4.0.2",
+    "eslint": "^4.3.0",
+    "nyc": "^11.1.0",
+    "rmfr": "^1.0.3",
+    "tape": "^4.8.0"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node",
+    "rules": {
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    }
+  }
+}
