@@ -27,9 +27,8 @@
     "async"
   ],
   "dependencies": {
-    "es6-set": "^0.1.5",
     "lodash": "^4.17.4",
-    "lstat-dir": "^0.1.0"
+    "lstat-dir": "^0.2.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",
