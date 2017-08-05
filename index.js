@@ -1,16 +1,15 @@
 'use strict';
 
-var lstatDir = require('lstat-dir');
-var toArray = require('lodash/fp/toArray');
+const lstatDir = require('lstat-dir');
 
 function filterDirectories(map) {
-  var directoryPaths = new Set();
+  const directoryPaths = new Set();
 
-  toArray(map).forEach(function(pathStatPair) {
+  for (const pathStatPair of map) {
     if (pathStatPair[1].isDirectory()) {
       directoryPaths.add(pathStatPair[0]);
     }
-  });
+  }
 
   return directoryPaths;
 }

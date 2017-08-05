@@ -27,8 +27,7 @@
     "async"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
-    "lstat-dir": "^0.2.0"
+    "lstat-dir": "^0.3.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",
@@ -38,10 +37,6 @@
     "tape": "^4.8.0"
   },
   "eslintConfig": {
-    "extends": "@shinnn/node",
-    "rules": {
-      "no-var": "off",
-      "prefer-arrow-callback": "off"
-    }
+    "extends": "@shinnn/node"
   }
 }
