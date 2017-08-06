@@ -1,6 +1,6 @@
 {
   "name": "list-directories",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "List all directories in a given directory",
   "repository": "shinnn/list-directories",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
