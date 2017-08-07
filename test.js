@@ -12,7 +12,7 @@ const promisifiedMkdir = promisify(mkdir);
 const promisifiedWriteFile = promisify(writeFile);
 
 test('listDirectories()', async t => {
-  t.plan(5);
+  t.plan(6);
 
   const tmp = join(__dirname, 'tmp');
 
@@ -47,18 +47,16 @@ test('listDirectories()', async t => {
   listDirectories().catch(err => {
     t.strictEqual(
       err.toString(),
-      'TypeError: Expected a path of the directory (string), but got a non-string value undefined.',
+      'RangeError: Expected 1 or 2 arguments (<string>[, <Object>]), but got no arguments.',
       'should fail when it takes no arguments.'
     );
   });
 
-  /*
   listDirectories('a', {}, 'b').catch(err => {
     t.strictEqual(
       err.toString(),
-      'TypeError: Expected 1 or 2 arguments (path: String[, options: Object]), but got 3 arguments.',
+      'RangeError: Expected 1 or 2 arguments (<string>[, <Object>]), but got 3 arguments.',
       'should fail when it takes too many arguments.'
     );
   });
-  */
 });

@@ -5,8 +5,8 @@
   "repository": "shinnn/list-directories",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
-    "pretest": "eslint --format=codeframe index.js test.js",
-    "test": "nyc --reporter=html --reporter=text node --throw-deprecation test.js"
+    "pretest": "eslint --fix --format=codeframe index.js test.js",
+    "test": "nyc --reporter=html --reporter=text node test.js"
   },
   "license": "CC0-1.0",
   "files": [
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",
-    "eslint": "^4.4.0",
+    "eslint": "^4.4.1",
     "nyc": "^11.1.0",
     "rmfr": "^1.0.3",
     "tape": "^4.8.0"
