@@ -20,6 +20,7 @@ test('listDirectories()', async t => {
   await promisifiedMkdir(tmp);
   await Promise.all([
     promisifiedWriteFile(join(tmp, 'non-directory'), ''),
+    promisifiedMkdir(join(tmp, '2')),
     promisifiedMkdir(join(tmp, '10'))
   ]);
 
@@ -27,7 +28,7 @@ test('listDirectories()', async t => {
     t.ok(files instanceof Set, 'should be fulfilled with a Set instance.');
 
     t.deepEqual([...files], [
-      // '2',
+      '2',
       '10'
     ].map(path => join(tmp, path)), 'should list directories in a given directory.');
   }).catch(t.fail);
@@ -39,7 +40,7 @@ test('listDirectories()', async t => {
   listDirectories([0, 1]).catch(err => {
     t.strictEqual(
       err.toString(),
-      'TypeError: Expected a path of the directory (string), but got a non-string value [ 0, 1 ].',
+      'TypeError: Expected a directory path (string), but got [ 0, 1 ] (array).',
       'should fail when it takes a non-string argument.'
     );
   });
@@ -47,7 +48,7 @@ test('listDirectories()', async t => {
   listDirectories().catch(err => {
     t.strictEqual(
       err.toString(),
-      'RangeError: Expected 1 or 2 arguments (<string>[, <Object>]), but got no arguments.',
+      'TypeError: Expected 1 or 2 arguments (path: String[, options: Object]), but got no arguments.',
       'should fail when it takes no arguments.'
     );
   });
@@ -55,7 +56,7 @@ test('listDirectories()', async t => {
   listDirectories('a', {}, 'b').catch(err => {
     t.strictEqual(
       err.toString(),
-      'RangeError: Expected 1 or 2 arguments (<string>[, <Object>]), but got 3 arguments.',
+      'TypeError: Expected 1 or 2 arguments (path: String[, options: Object]), but got 3 arguments.',
       'should fail when it takes too many arguments.'
     );
   });

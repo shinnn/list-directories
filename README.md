@@ -42,12 +42,11 @@ const listDirectories = require('list-directories');
 ### listDirectories(*dir*)
 
 *dir*: `string` (directory path)  
-<!-- *options*: `Object` ([`readdir-sorted`](https://github.com/shinnn/readdir-sorted) options)  -->
+*options*: `Object` ([`readdir-sorted`](https://github.com/shinnn/readdir-sorted) options)  
 Return: `Promise<Set<string>>`
 
 The promise will be fulfilled with a [`Set`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set) of strings — absolute paths of all directories included in the given directory.
 
-<!--
 Options are directly passed to the underlying [`readdir-sorted`](https://github.com/shinnn/readdir-sorted#readdirsortedpath--options) to control the order of results.
 
 ```javascript
@@ -70,7 +69,7 @@ listDirectories('/dirs', {
   iterator.next().value; //=> '/dirs/10'
 });
 ```
--->
+
 ## License
 
 [Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed)

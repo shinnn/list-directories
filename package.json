@@ -27,7 +27,7 @@
     "async"
   ],
   "dependencies": {
-    "lstat-dir": "^0.3.0"
+    "lstat-dir": "^1.0.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",

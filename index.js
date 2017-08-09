@@ -15,13 +15,5 @@ function filterDirectories(map) {
 }
 
 module.exports = function listDirectories(...args) {
-  const argLen = args.length;
-
-  if (argLen !== 1 && argLen !== 2) {
-    return Promise.reject(new RangeError(`Expected 1 or 2 arguments (<string>[, <Object>]), but got ${
-      argLen === 0 ? 'no' : argLen
-    } arguments.`));
-  }
-
-  return lstatDir(args[0]).then(filterDirectories);
+  return lstatDir(...args).then(filterDirectories);
 };
