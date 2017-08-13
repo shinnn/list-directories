@@ -22,7 +22,7 @@ async (() => {
     '/Users/example/my-dir/b',
     '/Users/example/my-dir/d'
   } */
-});
+})();
 ```
 
 ## Installation
