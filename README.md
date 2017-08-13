@@ -19,8 +19,8 @@ const listDirectories = require('list-directories');
 async (() => {
   await listDirectories('my-dir');
   /* Set {
-    '/Users/example/my-dir/b.txt',
-    '/Users/example/my-dir/d.txt'
+    '/Users/example/my-dir/b',
+    '/Users/example/my-dir/d'
   } */
 });
 ```
