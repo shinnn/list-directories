@@ -1,6 +1,6 @@
 {
   "name": "list-directories",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "List all directories in a given directory",
   "repository": "shinnn/list-directories",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
@@ -27,7 +27,7 @@
     "async"
   ],
   "dependencies": {
-    "lstat-dir": "^1.0.0"
+    "lstat-dir": "^2.0.0"
   },
   "devDependencies": {
     "@shinnn/eslint-config-node": "^4.0.2",
