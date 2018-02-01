@@ -16,9 +16,9 @@ const listDirectories = require('list-directories');
   ./my-dir/d: directory
 */
 
-async (() => {
+(async () => {
   await listDirectories('my-dir');
-  /* Set {
+  /* => Set {
     '/Users/example/my-dir/b',
     '/Users/example/my-dir/d'
   } */
@@ -27,7 +27,7 @@ async (() => {
 
 ## Installation
 
-[Use npm.](https://docs.npmjs.com/cli/install)
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/getting-started/what-is-npm).
 
 ```
 npm install list-directories
@@ -41,7 +41,7 @@ const listDirectories = require('list-directories');
 
 ### listDirectories(*dir*)
 
-*dir*: `string` (directory path)  
+*dir*: `string` `Buffer` `URL` (directory path)  
 *options*: `Object` ([`readdir-sorted`](https://github.com/shinnn/readdir-sorted) options)  
 Return: `Promise<Set<string>>`
 

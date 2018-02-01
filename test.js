@@ -12,52 +12,61 @@ const promisifiedMkdir = promisify(mkdir);
 const promisifiedWriteFile = promisify(writeFile);
 
 test('listDirectories()', async t => {
-  t.plan(6);
+	const tmp = join(__dirname, 'tmp');
 
-  const tmp = join(__dirname, 'tmp');
+	await rmfr(tmp);
+	await promisifiedMkdir(tmp);
+	await Promise.all([
+		promisifiedWriteFile(join(tmp, 'non-directory'), ''),
+		promisifiedMkdir(join(tmp, '2')),
+		promisifiedMkdir(join(tmp, '10'))
+	]);
 
-  await rmfr(tmp);
-  await promisifiedMkdir(tmp);
-  await Promise.all([
-    promisifiedWriteFile(join(tmp, 'non-directory'), ''),
-    promisifiedMkdir(join(tmp, '2')),
-    promisifiedMkdir(join(tmp, '10'))
-  ]);
+	const files = await listDirectories(Buffer.from(tmp), {numeric: true});
 
-  listDirectories(tmp, {numeric: true}).then(files => {
-    t.ok(files instanceof Set, 'should be fulfilled with a Set instance.');
+	t.ok(files instanceof Set, 'should be fulfilled with a Set instance.');
+	t.deepEqual([...files], [
+		'2',
+		'10'
+	].map(path => join(tmp, path)), 'should list directories in a given directory.');
 
-    t.deepEqual([...files], [
-      '2',
-      '10'
-    ].map(path => join(tmp, path)), 'should list directories in a given directory.');
-  }).catch(t.fail);
+	const fail = t.fail.bind(t, 'Unexpectedly succeeded.');
 
-  listDirectories('not-found').catch(err => {
-    t.strictEqual(err.code, 'ENOENT', 'should fail when it cannot find the directory.');
-  });
+	try {
+		await listDirectories('not-found');
+		fail();
+	} catch ({code}) {
+		t.equal(code, 'ENOENT', 'should fail when it cannot find the directory.');
+	}
 
-  listDirectories([0, 1]).catch(err => {
-    t.strictEqual(
-      err.toString(),
-      'TypeError: Expected a directory path (string), but got [ 0, 1 ] (array).',
-      'should fail when it takes a non-string argument.'
-    );
-  });
+	try {
+		await listDirectories([0, 1]);
+		fail();
+	} catch ({name}) {
+		t.equal(name, 'TypeError', 'should fail when it takes a non-string argument.');
+	}
 
-  listDirectories().catch(err => {
-    t.strictEqual(
-      err.toString(),
-      'TypeError: Expected 1 or 2 arguments (path: String[, options: Object]), but got no arguments.',
-      'should fail when it takes no arguments.'
-    );
-  });
+	try {
+		await listDirectories();
+		fail();
+	} catch (err) {
+		t.equal(
+			err.toString(),
+			'TypeError: Expected 1 or 2 arguments (path: <string|Buffer|URL>[, options: <Object>]), but got no arguments.',
+			'should fail when it takes no arguments.'
+		);
+	}
 
-  listDirectories('a', {}, 'b').catch(err => {
-    t.strictEqual(
-      err.toString(),
-      'TypeError: Expected 1 or 2 arguments (path: String[, options: Object]), but got 3 arguments.',
-      'should fail when it takes too many arguments.'
-    );
-  });
+	try {
+		await listDirectories('a', {}, 'b');
+		fail();
+	} catch (err) {
+		t.strictEqual(
+			err.toString(),
+			'TypeError: Expected 1 or 2 arguments (path: <string|Buffer|URL>[, options: <Object>]), but got 3 arguments.',
+			'should fail when it takes too many arguments.'
+		);
+	}
+
+	t.end();
 });
