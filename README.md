@@ -51,7 +51,7 @@ Options are directly passed to the underlying [`readdir-sorted`](https://github.
 
 ```javascript
 listDirectories('/dirs').then(files => {
-  const iterator = files.keys();
+  const iterator = files[Symbol.iterator];
 
   iterator.next().value; //=> '/dirs/10'
   iterator.next().value; //=> '/dirs/2a'
@@ -62,7 +62,7 @@ listDirectories('/dirs', {
   numeric: true,
   caseFirst: 'upper'
 }).then(files => {
-  const iterator = files.keys();
+  const iterator = files[Symbol.iterator];
 
   iterator.next().value; //=> '/dirs/2A'
   iterator.next().value; //=> '/dirs/2a'
@@ -72,4 +72,4 @@ listDirectories('/dirs', {
 
 ## License
 
-[Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed)
+[ISC License](./LICENSE) © 2018 Shinnosuke Watanabe
