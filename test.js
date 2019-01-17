@@ -42,8 +42,8 @@ test('listDirectories()', async t => {
 	try {
 		await listDirectories([0, 1]);
 		fail();
-	} catch ({name}) {
-		t.equal(name, 'TypeError', 'should fail when it takes a non-string argument.');
+	} catch ({code}) {
+		t.equal(code, 'ERR_INVALID_ARG_TYPE', 'should fail when it takes a non-string argument.');
 	}
 
 	try {
